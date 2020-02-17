@@ -1,0 +1,22 @@
+{
+  "npmScope": "felipe-nx",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "react-sound-player": {
+      "tags": []
+    },
+    "react-sound-player-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-sound-player"]
+    }
+  }
+}
