@@ -1,0 +1,49 @@
+.control {
+  width: 33.333%;
+  float: left;
+  padding: 12px 0;
+}
+
+.button {
+  width: 76px;
+  height: 76px;
+  padding: 25px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  justify-content: center;
+  cursor: pointer;
+
+  i {
+    color: #004066;
+    font-size: 26px;
+  }
+
+  &:hover {
+    background-color: #00a2ff;
+    i {
+      color: #fff;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    i {
+      color: #555;
+    }
+
+    &:hover {
+      background-color: initial;
+      i {
+        color: #555;
+      }
+    }
+  }
+}
+
+.button .button,
+.button i {
+  transition: 0.2s ease all;
+}

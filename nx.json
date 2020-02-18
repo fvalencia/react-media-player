@@ -17,6 +17,9 @@
     "react-sound-player-e2e": {
       "tags": [],
       "implicitDependencies": ["react-sound-player"]
+    },
+    "store": {
+      "tags": []
     }
   }
 }

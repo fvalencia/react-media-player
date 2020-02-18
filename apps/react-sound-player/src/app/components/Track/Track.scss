@@ -1,0 +1,106 @@
+.player-track {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  left: 15px;
+  padding: 13px 22px 10px 184px;
+  background-color: #003f63;
+  transition: 0.3s ease top;
+  z-index: 1;
+
+  &.active {
+    top: -92px;
+  }
+
+  .album-name {
+    color: #04a1fb;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .track-name {
+    color: #acaebd;
+    font-size: 13px;
+    margin: 2px 0 10px 0;
+  }
+
+  .track-time {
+    height: 12px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.current-time,
+.track-length {
+  color: transparent;
+  font-size: 12px;
+  background-color: #ffe8ee;
+  border-radius: 10px;
+  transition: 0.3s ease all;
+}
+
+.track-time.active .current-time,
+.track-time.active .track-length {
+  color: #009dfb;
+  background-color: transparent;
+}
+
+.s-area,
+.seek-bar {
+  position: relative;
+  height: 6px;
+  border-radius: 4px;
+}
+
+.s-area {
+  background-color: #d7f0ff;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s ease all;
+
+  &.active {
+    opacity: 1;
+  }
+
+  .s-hover {
+    position: absolute;
+    top: -30px;
+    height: 16px;
+    padding: 4px;
+    bottom: 0;
+    border-radius: 4px;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+    color: #003f63;
+    background-color: white;
+    font-size: 14px;
+    transform: translate(-50%);
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .seek-bar {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: #04a1fb;
+    transition: 0.2s ease width;
+    z-index: 1;
+  }
+}
+
+.ellipsis-wrap {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
