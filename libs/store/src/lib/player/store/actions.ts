@@ -4,6 +4,7 @@
 export const NEXT = 'NEXT_SONG';
 export const PREV = 'PREV_SONG';
 export const TOGGLE_PLAYING = 'TOGGLE_PLAYING';
+export const BUFFERING = 'BUFFERING';
 
 export const LOAD_SONGS = 'LOAD_SONGS';
 export const LOAD_SONGS_SUCCESS = 'LOAD_SONGS_SUCCESS';
@@ -20,6 +21,9 @@ export function prevSong() {
 }
 export function togglePlaying() {
   return { type: TOGGLE_PLAYING };
+}
+export function buffering(buffering: boolean) {
+  return { type: BUFFERING, payload: buffering };
 }
 
 export function loadSongs() {

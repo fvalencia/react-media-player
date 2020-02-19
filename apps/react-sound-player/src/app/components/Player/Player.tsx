@@ -15,10 +15,11 @@ export const Player = props => {
   }, []);
 
   return (
-    <div id="player">
+    <div className="player">
       <Track></Track>
       <div className="player-content">
         <AlbumArt></AlbumArt>
+        <div></div>
         <Controls></Controls>
       </div>
     </div>

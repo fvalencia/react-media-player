@@ -2,7 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import './AlbumArt.scss';
-import { getSongs, getCurrentSong, getIsPlaying } from '@felipe-nx/store';
+import {
+  getSongs,
+  getCurrentSong,
+  getIsPlaying,
+  getBuffering
+} from '@felipe-nx/store';
 
 export const AlbumArt = props => {
   /**
@@ -11,9 +16,10 @@ export const AlbumArt = props => {
   const songs = useSelector(getSongs);
   const currentSong = useSelector(getCurrentSong);
   const isPlaying = useSelector(getIsPlaying);
+  const isBuffering = useSelector(getBuffering);
 
   return (
-    <div className={`album-art ${isPlaying ? 'active' : ''}`}>
+    <div className={`album-art ${isPlaying ? 'active' : ''} ${isBuffering ? 'buffering' : ''}`}>
       {songs.map(song => (
         <img
           src={song.cover}
@@ -21,7 +27,9 @@ export const AlbumArt = props => {
           className={song.id === currentSong.id ? 'visible' : ''}
         />
       ))}
-      <div id="buffer-box">Buffering ...</div>
+      <div className="buffer-box">
+        Buffering ...
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-#player {
+.player {
   position: relative;
   height: 100%;
   z-index: 3;
@@ -10,4 +10,6 @@
   background-color: #fff;
   box-shadow: 0 30px 80px #656565;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
 }

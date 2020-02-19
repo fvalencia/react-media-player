@@ -6,7 +6,8 @@ const initialState = {
   songs: [],
   loading: false,
   loaded: false,
-  failure: false
+  failure: false,
+  buffering: false
 };
 
 export const playerReducer = (state = initialState, action) => {
@@ -29,6 +30,12 @@ export const playerReducer = (state = initialState, action) => {
       return {
         ...state,
         playing: !state.playing
+      };
+
+    case PlayerActions.BUFFERING:
+      return {
+        ...state,
+        buffering: action.payload
       };
 
     case PlayerActions.LOAD_SONGS:

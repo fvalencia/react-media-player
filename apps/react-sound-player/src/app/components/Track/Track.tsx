@@ -13,7 +13,9 @@ import {
   getIsPlaying,
   togglePlaying,
   nextSong,
-  getNextDisabled
+  getNextDisabled,
+  buffering,
+  getBuffering
 } from '@felipe-nx/store';
 import { useEventListener } from '../../utils/event-listener';
 import { getPositions } from '../../utils/get-position';
@@ -36,6 +38,7 @@ export const Track = props => {
   const currentSong = useSelector(getCurrentSong);
   const isPlaying = useSelector(getIsPlaying);
   const nextDisabled = useSelector(getNextDisabled);
+  const isBuffering = useSelector(getBuffering);
   const dispatch = useDispatch();
 
   /**
@@ -47,12 +50,13 @@ export const Track = props => {
   useEffect(() => {
     audio.current = new Audio();
     audio.current.loop = false;
-    audio.current.addEventListener('timeupdate', handleTimeUpdate);
+    // audio.current.addEventListener('timeupdate', handleTimeUpdate);
   }, []);
 
   useEffect(() => {
     if (currentSong) {
       setSongLength('');
+      dispatch(buffering(true));
       audio.current.currentTime = 0;
       audio.current.src = currentSong.songUrl;
       if (isPlaying) {
@@ -77,9 +81,13 @@ export const Track = props => {
     }
   }, [nextDisabled]);
 
-  const handleTimeUpdate = () => {
+  const handleTimeUpdate = useCallback(() => {
     const currentTime = audio.current.currentTime;
     const duration = audio.current.duration;
+
+    if (currentTime > 1 && isBuffering) {
+      dispatch(buffering(false));
+    }
 
     if (duration) {
       if (!songLength) {
@@ -88,7 +96,7 @@ export const Track = props => {
       setElapsedTime(formatSeconds(currentTime));
       setBarWidth((currentTime / duration) * 100);
     }
-  };
+  }, [isBuffering]);
 
   const handleMouseMove = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -121,6 +129,7 @@ export const Track = props => {
   };
 
   useEventListener('ended', handleEnded, audio.current);
+  useEventListener('timeupdate', handleTimeUpdate, audio.current);
 
   return (
     <Fragment>

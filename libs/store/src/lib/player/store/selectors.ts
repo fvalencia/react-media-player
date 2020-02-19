@@ -22,6 +22,11 @@ export const getIsPlaying = createSelector(
   state => state.playing
 );
 
+export const getBuffering = createSelector(
+  state,
+  state => state.buffering
+);
+
 export const getCurrentSong = createSelector(
   state,
   state => (state.songs ? state.songs[state.currentSongIndex] : null)
